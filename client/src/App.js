@@ -1,10 +1,14 @@
 import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import RecipeList from './components/RecipeList';
 
 function App() {
   return (
-    <div className="App">
-      page
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/recipes" component={RecipeList} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 

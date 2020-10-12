@@ -10,14 +10,14 @@ router.post("/add", (req, res) => {
   });
 
   newRecipe.save(err => {
-    if (err) return res.status(400).json({ success:false, err});
+    if (err) return res.status(400).json({ success:false, error:err});
     return res.status(200).json({ success:true })
   })
 });
 
 router.get("/", (req, res) => {
   Recipe.find((err, recipes) => {
-      if (err) return res.status(400).json({ success:false, err });
+      if (err) return res.status(400).json({ success:false, error:err });
       return res.status(200).json({ success:true, recipes });
     })
 });
@@ -25,7 +25,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   Recipe.findById(req.params.id)
     .exec((err, recipe) => {
-      if (err) return res.status(400).json({ success:false, err });
+      if (err) return res.status(400).json({ success:false, error:err });
       return res.status(200).json({ success:true , recipe });
     })
 })
