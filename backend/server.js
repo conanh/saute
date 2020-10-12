@@ -11,6 +11,8 @@ const PORT = process.env.PORT || 5000;
 console.log("Starting server...")
 app.listen(PORT, () => console.log("Server started on port " + PORT));
 
+app.use("/recipes", require("./routes/recipeRoutes"));
+
 console.log("Connecting to DB...")
 mongoose.connect(process.env.MONGODB_URI, 
   { useNewUrlParser: true, useUnifiedTopology: true }, 
