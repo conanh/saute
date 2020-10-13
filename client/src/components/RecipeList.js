@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 function RecipeList() {
@@ -21,8 +22,10 @@ function RecipeList() {
 
   const renderRecipes = Recipes.map((recipe, index) => {
     return <div key={index} className="recipe-card">
-        <div className="title">{recipe.title}</div>
-        <div className="image"><img src={recipe.images[0]} alt={recipe.title}/></div>
+        <Link to={`/recipes/${recipe._id}`}>
+          <div className="title">{recipe.title}</div>
+          <div className="image"><img src={recipe.images[0]} alt={recipe.title}/></div>
+        </Link>
       </div>
   })
 
