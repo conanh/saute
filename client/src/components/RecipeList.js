@@ -37,13 +37,15 @@ function RecipeList() {
     <div>
       <div className="add-recipe-header">
         <Title level={2}>Recipes</Title>
-        <Button 
-          className="add-recipe-btn" 
-          icon={<PlusOutlined />} 
-          type="primary"
-          size="large"
-          shape="round"
-        >Add Recipe</Button>
+        <Link to="/recipes/add">
+          <Button 
+              className="add-recipe-btn" 
+              icon={<PlusOutlined />}
+              type="primary"
+              size="large"
+              shape="round"
+            >Add Recipe</Button>
+        </Link>
       </div>
       {renderRecipes}
     </div>
