@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Button, Typography } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+
+const { Title } = Typography;
 
 function RecipeList() {
   const [Recipes, setRecipes] = useState([]);
@@ -31,6 +35,16 @@ function RecipeList() {
 
   return (
     <div>
+      <div className="add-recipe-header">
+        <Title level={2}>Recipes</Title>
+        <Button 
+          className="add-recipe-btn" 
+          icon={<PlusOutlined />} 
+          type="primary"
+          size="large"
+          shape="round"
+        >Add Recipe</Button>
+      </div>
       {renderRecipes}
     </div>
   )

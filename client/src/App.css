@@ -7,3 +7,12 @@
   margin: 16px 28px 16px 0;
   float: left;
 }
+
+.add-recipe-header {
+  padding: 1rem 0;
+}
+.add-recipe-btn {
+  position: relative;
+  float: right;
+  top: -3rem;
+}
