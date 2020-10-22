@@ -15,11 +15,17 @@ router.post("/add", (req, res) => {
   })
 });
 
-router.get("/", (req, res) => {
+router.post("/", (req, res) => {
+  console.log("query options: ", req.body);
+  let order = req.body.order ? req.body.order : "desc"
+  let sortBy = req.body.sortBy ? req.body.sortBy : "_id"
+  let limit = req.body.limit ? parseInt(req.body.limit) : 100  
   Recipe.find((err, recipes) => {
       if (err) return res.status(400).json({ success:false, error:err });
       return res.status(200).json({ success:true, recipes });
     })
+    .sort([[sortBy, order]])
+    .limit(limit);
 });
 
 router.get("/:id", (req, res) => {

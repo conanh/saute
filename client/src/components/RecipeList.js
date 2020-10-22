@@ -9,10 +9,13 @@ const { Title } = Typography;
 function RecipeList() {
   const [Recipes, setRecipes] = useState([]);
 
+  const options = {order:'desc', sortBy:'createdOn'}; //temp
+
   const getRecipes = () => {
-    axios.get('http://localhost:5000/recipes')
+    axios.post('http://localhost:5000/recipes', options)
       .then(res => {
         if (res.data.success) {
+          console.log("Recipes: ", res.data.recipes);
           setRecipes([...res.data.recipes]);
         } else {
           alert('Failed to retreive product data' + res.data.error.message);
