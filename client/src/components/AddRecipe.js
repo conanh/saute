@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Form, Input, Button, Rate, Typography, Upload, message } from 'antd';
 import { PictureTwoTone } from '@ant-design/icons';
+import axios from 'axios';
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -31,10 +32,36 @@ const draggerProps = {
   },
 };
 
-function AddRecipe() {
+function AddRecipe(props) {
 
   const onFinish = values => {
-    console.log('Success:', values);
+    const data = {
+      "title": values.title,
+      "images": values.images,
+      "ingredients": values.ingredients,
+      "instructions": values.instructions,
+      "rating": values.rating,
+      "source": values.source,
+      "createdOn": Date(),
+      "createdBy": 1 // this needs to be dynamic
+    }
+    axios.post('http://localhost:5000/recipes/add', data)
+      .then(res => {
+        if(res.data.success) {
+          // put in notification of success here
+          console.log('Success:', data);
+          props.history.push('/recipes?addedRecipe=success');
+          message.success('Recipe successfully added!');
+        } else {
+          // put notification of failure here
+          console.log('Failure:', data);
+        }
+      })
+      .catch(err => {
+        console.log('error: ', err);
+        console.log('data: ', data);
+        message.error('Could not save the recipe. Please try again later.');
+      })
   };
 
   const onFinishFailed = errorInfo => {
