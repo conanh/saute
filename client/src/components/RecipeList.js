@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Button, Typography } from 'antd';
+import { Button, Typography, Card, Row, Col } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
 const { Title } = Typography;
+const { Meta } = Card;
 
 function RecipeList() {
   const [Recipes, setRecipes] = useState([]);
@@ -28,12 +29,19 @@ function RecipeList() {
   }, [])
 
   const renderRecipes = Recipes.map((recipe, index) => {
-    return <div key={index} className="recipe-card">
+    let image = recipe.images[0] || `https://via.placeholder.com/240?text=${recipe.title}`;
+    return <Col xl={4} lg={6} md={8} s={12} xs={24}>
         <Link to={`/recipes/${recipe._id}`}>
-          <div className="title">{recipe.title}</div>
-          <div className="image"><img src={recipe.images[0]} alt={recipe.title}/></div>
+          <Card
+            className="recipe-card"
+            hoverable
+            style={{ }}
+            cover={<img src={image} alt={recipe.title}/>}
+          >
+            <Meta title={<span title={recipe.title}>{recipe.title}</span>} />
+          </Card>
         </Link>
-      </div>
+      </Col>
   })
 
   return (
@@ -50,7 +58,10 @@ function RecipeList() {
             >Add Recipe</Button>
         </Link>
       </div>
-      {renderRecipes}
+      <Row gutter={[24, 24]} className="recipe-card-container">
+        {renderRecipes}
+      </Row>
+      
     </div>
   )
 };

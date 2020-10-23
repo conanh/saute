@@ -1,5 +1,12 @@
 @import '~antd/dist/antd.css';
 
+#root {
+  height: 100%;
+}
+.ant-layout.layout {
+  height: 100%;
+}
+
 .logo {
   width: 120px;
   height: 31px;
@@ -15,4 +22,22 @@
   position: relative;
   float: right;
   top: -3rem;
+}
+
+.recipe-card-container {
+  width: 100%;
+}
+
+.recipe-card {
+  height: 100%;
+}
+.recipe-card .ant-card-cover {
+  height: calc(100% - 62px);
+}
+.recipe-card img {
+  object-fit: cover;
+  height: 100%;
+}
+.ant-card-meta-title {
+  font-size: 14px;
 }
