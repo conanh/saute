@@ -41,3 +41,7 @@
 .ant-card-meta-title {
   font-size: 14px;
 }
+
+.recipe-single .ingredients, .recipe-single .instructions {
+  white-space: pre-line;
+}
