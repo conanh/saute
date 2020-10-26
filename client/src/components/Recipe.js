@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { Image, Typography, Rate, Carousel } from 'antd';
+
+const { Title } = Typography;
 
 function Recipe(params) {
   const [Recipe, setRecipe] = useState({});
@@ -11,7 +14,6 @@ function Recipe(params) {
         .then(res => {
           if (res.data.success) {
             setRecipe(res.data.recipe);
-            // console.log(res.data.recipe); //testing
           } else {
             alert('Could not fetch the recipe');
           }
@@ -26,14 +28,28 @@ function Recipe(params) {
     getRecipe();
   });
 
-  let firstImage = Recipe.images ? Recipe.images[0] : '';
+  const renderCarouselImages = () => {
+    let images = Recipe.images ? Recipe.images : [`https://via.placeholder.com/500?text="${Recipe.title}"`];
+    console.log('Recipe.images:', Recipe.images)
+    return images.map((image,index) => {
+      return <Image 
+          src={image}
+          alt={`${Recipe.title}-${index}`}
+          placeholder={true}
+          className="image"
+          width={500}
+          key={index}
+        />
+    });
+  }
 
   return (
     <div className="recipe-single">
-      <div className="title">{Recipe.title}</div>
-      <div className="rating">Rating: {Recipe.rating}/5</div>
-      <div className="image"><img src={firstImage} alt={Recipe.title}/></div>
-      {/* <img src={Recipe.images[0]} alt={Recipe.title} className="image"/> */}
+      <Title level={2} className="title">{Recipe.title}</Title>
+      <div className="rating"><Rate disabled value={Recipe.rating} title={`${Recipe.rating}/5`} /></div>
+      <Carousel className="image-carousel">
+        {renderCarouselImages()}
+      </Carousel>
       <div className="ingredients">{Recipe.ingredients}</div>
       <div className="instructions">{Recipe.instructions}</div>
       <div className="source">Source: {Recipe.source}</div>

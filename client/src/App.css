@@ -4,7 +4,7 @@
   height: 100%;
 }
 .ant-layout.layout {
-  height: 100%;
+  /* height: 100%; */
 }
 
 .logo {
@@ -42,6 +42,18 @@
   font-size: 14px;
 }
 
+.recipe-single {
+  padding: 2rem 0;
+}
+.recipe-single > div {
+  padding-bottom: 2rem;
+}
+.ant-rate-star-first, .ant-rate-star-second {
+  color: #fff;
+}
 .recipe-single .ingredients, .recipe-single .instructions {
   white-space: pre-line;
+}
+.recipe-single .image-carousel {
+  width: 500px;
 }
