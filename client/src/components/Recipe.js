@@ -9,7 +9,7 @@ function Recipe(params) {
   const [Recipe, setRecipe] = useState({});
   let { id } = useParams();
 
-  const getRecipe = () => {
+  useEffect(() => {
     axios.get(`http://localhost:5000/recipes/${id}`)
         .then(res => {
           if (res.data.success) {
@@ -21,16 +21,10 @@ function Recipe(params) {
         .catch(err => {
           console.log("error: ", err);
         });
-        
-  }
-
-  useEffect(() => {
-    getRecipe();
-  });
+  },[id]);
 
   const renderCarouselImages = () => {
     let images = Recipe.images ? Recipe.images : [`https://via.placeholder.com/500?text="${Recipe.title}"`];
-    console.log('Recipe.images:', Recipe.images)
     return images.map((image,index) => {
       return <Image 
           src={image}

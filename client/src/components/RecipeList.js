@@ -12,7 +12,7 @@ function RecipeList() {
 
   const options = {order:'desc', sortBy:'createdOn'}; //temp
 
-  const getRecipes = () => {
+  useEffect(() => {
     axios.post('http://localhost:5000/recipes', options)
       .then(res => {
         if (res.data.success) {
@@ -22,11 +22,7 @@ function RecipeList() {
           alert('Failed to retreive product data' + res.data.error.message);
         }
       })
-  }
-
-  useEffect(() => {
-    getRecipes();
-  }, [])
+  }, [options])
 
   const renderRecipes = Recipes.map((recipe, index) => {
     let image = recipe.images[0] || `https://via.placeholder.com/240?text=${recipe.title}`;
