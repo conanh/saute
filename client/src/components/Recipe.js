@@ -24,14 +24,13 @@ function Recipe(params) {
   },[id]);
 
   const renderCarouselImages = () => {
-    let images = Recipe.images ? Recipe.images : [`https://via.placeholder.com/500?text="${Recipe.title}"`];
+    let images = Recipe.images ? Recipe.images : [`https://via.placeholder.com/750x500?text="${Recipe.title}"`];
     return images.map((image,index) => {
       return <Image 
           src={image}
           alt={`${Recipe.title}-${index}`}
           placeholder={true}
           className="image"
-          width={500}
           key={index}
         />
     });
@@ -44,7 +43,9 @@ function Recipe(params) {
       <Carousel className="image-carousel">
         {renderCarouselImages()}
       </Carousel>
+      <Title level={3} className="recipe-label">Ingredients</Title>
       <div className="ingredients">{Recipe.ingredients}</div>
+      <Title level={3} className="recipe-label">Instructions</Title>
       <div className="instructions">{Recipe.instructions}</div>
       <div className="source">Source: {Recipe.source}</div>
     </div>

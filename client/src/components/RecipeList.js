@@ -41,19 +41,17 @@ function RecipeList() {
   })
 
   return (
-    <div>
-      <div className="add-recipe-header">
-        <Title level={2}>Recipes</Title>
-        <Link to="/recipes/add">
-          <Button 
-              className="add-recipe-btn" 
-              icon={<PlusOutlined />}
-              type="primary"
-              size="large"
-              shape="round"
-            >Add Recipe</Button>
-        </Link>
-      </div>
+    <div className="recipes-list">
+      <Title level={2}>Recipes</Title>
+      <Link to="/recipes/add">
+        <Button 
+            className="add-recipe-btn" 
+            icon={<PlusOutlined />}
+            type="primary"
+            size="large"
+            shape="round"
+          >Add Recipe</Button>
+      </Link>
       <Row gutter={[24, 24]} className="recipe-card-container">
         {renderRecipes}
       </Row>

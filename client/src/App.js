@@ -31,7 +31,7 @@ function App() {
             </Menu.Item>
           </Menu>
         </Header>
-        <Content style={{ padding: '0 50px' }}>
+        <Content>
           <div className="site-layout-content">
             <Switch>
               <Route exact path="/recipes" component={RecipeList} />
