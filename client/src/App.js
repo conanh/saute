@@ -31,15 +31,11 @@ function App() {
             </Menu.Item>
           </Menu>
         </Header>
-        <Content>
-          <div className="site-layout-content">
-            <Switch>
-              <Route exact path="/recipes" component={RecipeList} />
-              <Route path="/recipes/add" component={AddRecipe} />
-              <Route path="/recipes/:id" component={Recipe} />
-            </Switch>
-          </div>
-        </Content>
+        <Switch>
+          <Route exact path="/recipes" component={RecipeList} />
+          <Route path="/recipes/add" component={AddRecipe} />
+          <Route path="/recipes/:id" component={Recipe} />
+        </Switch>
         <Footer style={{ textAlign: 'center' }}>Saute ©2020</Footer>
       </Layout>
 

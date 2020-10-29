@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Image, Typography, Rate, Carousel } from 'antd';
+import { Image, Typography, Rate, Carousel, Layout } from 'antd';
 
 const { Title } = Typography;
+const { Content } = Layout;
 
 function Recipe(params) {
   const [Recipe, setRecipe] = useState({});
@@ -37,7 +38,7 @@ function Recipe(params) {
   }
 
   return (
-    <div className="recipe-single">
+    <Content className="recipe-single">
       <Title level={2} className="title">{Recipe.title}</Title>
       <div className="rating"><Rate disabled value={Recipe.rating} title={`${Recipe.rating}/5`} /></div>
       <Carousel className="image-carousel">
@@ -48,7 +49,7 @@ function Recipe(params) {
       <Title level={3} className="recipe-label">Instructions</Title>
       <div className="instructions">{Recipe.instructions}</div>
       <div className="source">Source: {Recipe.source}</div>
-    </div>
+    </Content>
   )
 }
 

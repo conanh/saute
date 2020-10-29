@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Button, Typography, Card, Row, Col } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { Button, Typography, Card, Row, Col, Layout, Input } from 'antd';
+import { PlusOutlined, DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons';
 
 const { Title } = Typography;
 const { Meta } = Card;
+const { Content, Sider } = Layout;
+const { Search } = Input;
 
 function RecipeList() {
   const [Recipes, setRecipes] = useState([]);
-
-  const options = {order:'desc', sortBy:'createdOn'}; //temp
+  const [menuCollapsed, setMenuCollapsed] = useState(false);
 
   useEffect(() => {
+    const options = {order:'desc', sortBy:'createdOn'}; //temp
     axios.post('http://localhost:5000/recipes', options)
       .then(res => {
         if (res.data.success) {
@@ -22,7 +24,7 @@ function RecipeList() {
           alert('Failed to retreive product data' + res.data.error.message);
         }
       })
-  }, [options])
+  }, []);
 
   const renderRecipes = Recipes.map((recipe, index) => {
     let image = recipe.images[0] || `https://via.placeholder.com/240?text=${recipe.title}`;
@@ -40,23 +42,58 @@ function RecipeList() {
       </Col>
   })
 
+  const onSearch = searchTerms => {
+    console.log("search terms:", searchTerms);
+  }
+  const onBreakpoint = broken => {
+    console.log("broken:", broken);
+  }
+  const onCollapse = (collapsed, type) => {
+    console.log("collapsed & type:", collapsed, type);
+    setMenuCollapsed(!menuCollapsed);
+  }
+
   return (
-    <div className="recipes-list">
-      <Title level={2}>Recipes</Title>
-      <Link to="/recipes/add">
+    <Layout>
+      <Sider 
+        className="search-sider"
+        width={240}
+        breakpoint="lg"
+        onBreakpoint={onBreakpoint}
+        onCollapse={onCollapse}
+        collapsed={menuCollapsed}
+      >
         <Button 
-            className="add-recipe-btn" 
-            icon={<PlusOutlined />}
-            type="primary"
-            size="large"
-            shape="round"
-          >Add Recipe</Button>
-      </Link>
-      <Row gutter={[24, 24]} className="recipe-card-container">
-        {renderRecipes}
-      </Row>
-      
-    </div>
+          className={menuCollapsed ? "btn-collapse collapsed" : "btn-collapse"}
+          onClick={onCollapse}
+        >
+          {menuCollapsed ? <DoubleRightOutlined /> : <DoubleLeftOutlined />}
+        </Button>
+        <Search
+          placeholder="Search..."
+          allowClear
+          onSearch={onSearch}
+          className={menuCollapsed ? "search collapsed" : "search"}
+        />
+        <div></div>
+        <div>Blah</div>
+      </Sider>
+      <Content className="recipes-list">
+        <Title level={2}>Recipes</Title>
+        <Link to="/recipes/add">
+          <Button 
+              className="add-recipe-btn" 
+              icon={<PlusOutlined />}
+              type="primary"
+              size="large"
+              shape="round"
+            >Add Recipe</Button>
+        </Link>
+        <Row gutter={[24, 24]} className="recipe-card-container">
+          {renderRecipes}
+        </Row>
+      </Content>
+    </Layout>
   )
 };
 
