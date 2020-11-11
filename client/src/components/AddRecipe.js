@@ -78,7 +78,7 @@ function AddRecipe(props) {
     >
       <Row>
         <Col span={8} offset={8}>
-          <Title level={2}>Add a Recipe</Title>
+          <Title id="add-recipe-title" level={2}>Add a Recipe</Title>
         </Col>
       </Row>
       <Row gutter={[0,24]}>
@@ -131,7 +131,7 @@ function AddRecipe(props) {
         <Input />
       </Form.Item>
       <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
+        <Button id="add-recipe-submit-btn" type="primary" htmlType="submit">
           Submit
         </Button>
       </Form.Item>

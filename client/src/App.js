@@ -22,12 +22,12 @@ function App() {
       <Layout className="layout">
         <Header>
         <Link to="/"><div className="logo" /></Link>
-          <Menu theme="dark" mode="horizontal" selectedKeys={[currentMenu]} onClick={handleClick}>
+          <Menu id="top-nav" theme="dark" mode="horizontal" selectedKeys={[currentMenu]} onClick={handleClick}>
             <Menu.Item key="recipes">
               <Link to="/recipes">Recipes</Link>
             </Menu.Item>
             <Menu.Item key="planning">
-              <Link>Meal Planning</Link>
+              <Link to="">Meal Planning</Link>
             </Menu.Item>
           </Menu>
         </Header>

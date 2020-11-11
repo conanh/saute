@@ -21,7 +21,7 @@
 .recipes-list {
   margin: 2rem 50px;
 }
-.add-recipe-btn {
+#add-recipe-btn {
   position: relative;
   float: right;
   top: -3rem;

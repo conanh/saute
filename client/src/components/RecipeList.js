@@ -12,6 +12,8 @@ const { Search } = Input;
 function RecipeList() {
   const [Recipes, setRecipes] = useState([]);
   const [menuCollapsed, setMenuCollapsed] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [recipesLoading, setRecipesLoading] = useState(false);
 
   useEffect(() => {
     const options = {order:'desc', sortBy:'createdOn'}; //temp
@@ -42,6 +44,11 @@ function RecipeList() {
       </Col>
   })
 
+  const onInputChange = event => {
+    setSearchQuery(event.target.value);
+    setRecipesLoading(true);
+    console.log("query: ", event.target.value);
+  }
   const onSearch = searchTerms => {
     console.log("search terms:", searchTerms);
   }
@@ -73,16 +80,17 @@ function RecipeList() {
           placeholder="Search..."
           allowClear
           onSearch={onSearch}
+          onChange={onInputChange}
           className={menuCollapsed ? "search collapsed" : "search"}
         />
         <div></div>
         <div>Blah</div>
       </Sider>
       <Content className="recipes-list">
-        <Title level={2}>Recipes</Title>
+        <Title level={2} id="recipes-list-title">Recipes</Title>
         <Link to="/recipes/add">
           <Button 
-              className="add-recipe-btn" 
+              id="add-recipe-btn" 
               icon={<PlusOutlined />}
               type="primary"
               size="large"
