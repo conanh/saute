@@ -78,7 +78,7 @@ function AddRecipe(props) {
     >
       <Row>
         <Col span={8} offset={8}>
-          <Title id="add-recipe-title" level={2}>Add a Recipe</Title>
+          <Title className="add-recipe-title" level={2}>Add a Recipe</Title>
         </Col>
       </Row>
       <Row gutter={[0,24]}>
@@ -92,43 +92,38 @@ function AddRecipe(props) {
         </Col>
       </Row>
       
-      <Form.Item 
-        className="title"
+      <Form.Item
         label="Recipe Title"
         name="title"
         rules={[{ required: true, message:"A title is required for a recipe."}]}
       >
-        <Input />
+        <Input id="input-title" />
       </Form.Item>
       <Form.Item 
-        className="ingredients"
         label="Ingredients"
         name="ingredients"
         rules={[{ required: true, message:"Ingredients are required for a recipe."}]}
       >
-        <TextArea />
+        <TextArea id="input-ingredients" />
       </Form.Item>
       <Form.Item 
-        className="instructions"
         label="Instructions"
         name="instructions"
         rules={[{ required: true, message:"Instructions are required for a recipe."}]}
       >
-        <TextArea />
+        <TextArea id="input-instructions" />
       </Form.Item>
-      <Form.Item 
-        className="rating"
+      <Form.Item
         label="Rating"
         name="rating"
       >
-        <Rate />
+        <Rate id="input-rating" />
       </Form.Item>
-      <Form.Item 
-        className="source"
+      <Form.Item
         label="Source"
         name="source"
       >
-        <Input />
+        <Input id="input-source" />
       </Form.Item>
       <Form.Item {...tailLayout}>
         <Button id="add-recipe-submit-btn" type="primary" htmlType="submit">

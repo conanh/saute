@@ -12,7 +12,7 @@ const { Search } = Input;
 function RecipeList() {
   const [Recipes, setRecipes] = useState([]);
   const [menuCollapsed, setMenuCollapsed] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = React.useState('');
   const [recipesLoading, setRecipesLoading] = useState(false);
 
   useEffect(() => {
